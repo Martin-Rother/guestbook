@@ -1,25 +1,32 @@
 {
-    "name": "guestbook",
-    "private": true,
-    "version": "0.0.0",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
-    },
-    "dependencies": {
-        "vue": "^3.2.25"
-    },
-    "devDependencies": {
-        "@vitejs/plugin-vue": "^2.3.3",
-        "vite": "^2.9.9"
-    },
-    "prettier": {
-        "trailingComma": "es5",
-        "tabWidth": 4,
-        "useTabs": false,
-        "endOfLine": "lf",
-        "semi": false,
-        "singleQuote": true
-    }
+  "name": "guestbook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vite preview",
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mdi/font": "5.9.55",
+    "roboto-fontface": "*",
+    "vue": "^3.2.25",
+    "vuetify": "^3.0.0-beta.0",
+    "webfontloader": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "vite": "^2.9.9",
+    "vite-plugin-vuetify": "^1.0.0-alpha.0",
+    "vue-cli-plugin-vuetify": "~2.5.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "useTabs": false,
+    "endOfLine": "lf",
+    "semi": false,
+    "singleQuote": true
+  }
 }
