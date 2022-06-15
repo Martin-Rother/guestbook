@@ -16,7 +16,7 @@ const messages = {
     },
     de: {
         message: {
-            title: 'Martin Gästebuch',
+            title: 'Martins Gästebuch',
             send: 'Senden',
             placeholder: 'Schreibe etwas nettes :)',
             toggle_theme: 'Thema umschalten',
