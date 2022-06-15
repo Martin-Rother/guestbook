@@ -15,9 +15,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        foreach($posts AS $post) {
-            $post->entry = htmlspecialchars($post->entry, ENT_QUOTES);
-        }
         return response()->json($posts);
     }
 
@@ -39,7 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $sanitizer = HtmlSanitizer\Sanitizer::create(['extensions' => ['basic']]);
+        $sanitizer = \HtmlSanitizer\Sanitizer::create(['extensions' => ['basic', 'image', 'list', 'table', 'list' ]]);
         $name   = $sanitizer->sanitize($request->name);
         $entry  = $sanitizer->sanitize($request->entry);
 

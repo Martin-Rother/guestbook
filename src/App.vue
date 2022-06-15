@@ -28,7 +28,7 @@
                                 v-model:content="entry"
                                 :placeholder="$t('message.placeholder')"
                                 contentType="html"
-                                toolbar="full"
+                                toolbar="essential"
                                 theme="snow"
                             />
                         </div>
