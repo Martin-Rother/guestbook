@@ -27,6 +27,7 @@
                             <QuillEditor
                                 v-model:content="entry"
                                 :placeholder="$t('message.placeholder')"
+                                :key="$t('message.placeholder')"
                                 contentType="html"
                                 toolbar="essential"
                                 theme="snow"
@@ -119,6 +120,9 @@ export default {
                 this.posts = response.data.reverse()
             })
         },
+    },
+    computed: {
+
     },
     components: { QuillEditor, LocaleChangerVue },
 }
