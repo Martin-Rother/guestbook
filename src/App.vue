@@ -1,9 +1,16 @@
 <template>
     <vApp>
         <vAppBar color="teal-darken-4" dark>
-            <vAppBarTitle> Martin's Guestbook </vAppBarTitle>
+            <vAppBarTitle>{{ $t('message.title') }}</vAppBarTitle>
             <template v-slot:append>
-                <vBtn @click="toggleTheme">Toggle Theme</vBtn>
+                <vBtn
+                    flat
+                    variant="contained-text"
+                    class="mr-2"
+                    @click="toggleTheme"
+                    >{{ $t('message.toggle_theme') }}</vBtn
+                >
+                <localeChangerVue></localeChangerVue>
             </template>
         </vAppBar>
         <vMain>
@@ -19,7 +26,7 @@
                         <div class="mx-2">
                             <QuillEditor
                                 v-model:content="entry"
-                                placeholder="Write something nice :)"
+                                :placeholder="$t('message.placeholder')"
                                 contentType="html"
                                 toolbar="full"
                                 theme="snow"
@@ -31,7 +38,7 @@
                                 @click="send()"
                                 :disabled="entry === '' || name === ''"
                             >
-                                Send
+                                {{ $t('message.send') }}
                             </vBtn>
                         </div>
 
@@ -48,9 +55,10 @@
                                     <vCol>
                                         <div class="text-right text-caption">
                                             {{
-                                                new Date(
-                                                    item.created_at
-                                                ).toLocaleDateString()
+                                                $d(
+                                                    new Date(item.created_at),
+                                                    'short'
+                                                )
                                             }}
                                         </div>
                                     </vCol>
@@ -74,6 +82,7 @@ import { useTheme } from 'vuetify'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import axios from 'axios'
+import LocaleChangerVue from './components/locale-changer.vue'
 
 export default {
     setup() {
@@ -111,6 +120,6 @@ export default {
             })
         },
     },
-    components: { QuillEditor },
+    components: { QuillEditor, LocaleChangerVue },
 }
 </script>
