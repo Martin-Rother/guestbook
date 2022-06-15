@@ -7,9 +7,9 @@
             </template>
         </vAppBar>
         <vMain>
-            <vContainer class="ma-2">
+            <vContainer class="text-center ma-2">
                 <vRow>
-                    <vCol offset-lg="2" lg="8">
+                    <vCol offset-lg="4" lg="8">
                         <vForm class="mx-2">
                             <vTextField
                                 v-model="name"
@@ -18,7 +18,7 @@
                         </vForm>
                         <div class="mx-2">
                             <QuillEditor
-                                v-model:content="content"
+                                v-model:content="entry"
                                 placeholder="Write something nice :)"
                                 contentType="html"
                                 toolbar="full"
@@ -29,21 +29,38 @@
                         <div class="text-right ma-2">
                             <vBtn
                                 @click="send()"
-                                :disabled="content === '' || name === ''"
+                                :disabled="entry === '' || name === ''"
                             >
                                 Send
                             </vBtn>
                         </div>
 
-                        <div v-if="posts.length !== 0" class="ma-2">
-                            <vList>
-                                <vListItem v-for="item in posts">
-                                    <vListItemContent>
-                                        <div>User: {{ item.name }}</div>
-                                        <div v-html="item.content"></div>
-                                    </vListItemContent>
-                                </vListItem>
-                            </vList>
+                        <div v-if="posts.length !== 0" class="mr-4 mt-2">
+                            <vContainer
+                                fluid
+                                v-for="item in posts"
+                                class="elevation-1 ma-2"
+                            >
+                                <vRow>
+                                    <vCol class="text-left text-subtitle-1">
+                                        {{ item.name }}
+                                    </vCol>
+                                    <vCol>
+                                        <div class="text-right text-caption">
+                                            {{
+                                                new Date(
+                                                    item.created_at
+                                                ).toLocaleDateString()
+                                            }}
+                                        </div>
+                                    </vCol>
+                                </vRow>
+                                <vRow>
+                                    <vCol class="text-left text-body-1">
+                                        <div v-html="item.entry"></div>
+                                    </vCol>
+                                </vRow>
+                            </vContainer>
                         </div>
                     </vCol>
                 </vRow>
@@ -56,6 +73,7 @@
 import { useTheme } from 'vuetify'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import axios from 'axios'
 
 export default {
     setup() {
@@ -69,16 +87,28 @@ export default {
         }
     },
     data: () => ({
-        content: '',
+        entry: '',
         name: '',
         posts: [],
     }),
+    mounted() {
+        this.refreshEntries()
+    },
     methods: {
         send() {
-            this.addPost(this.name, this.content)
+            axios
+                .post('http://localhost:8000/api/post/store', {
+                    name: this.name,
+                    entry: this.entry,
+                })
+                .then(() => {
+                    this.refreshEntries()
+                })
         },
-        addPost(name, content) {
-            this.posts.push({ name: name, content: content })
+        refreshEntries() {
+            axios.get('http://localhost:8000/api/posts').then((response) => {
+                this.posts = response.data.reverse()
+            })
         },
     },
     components: { QuillEditor },
