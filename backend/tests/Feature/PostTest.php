@@ -22,9 +22,9 @@ class PostTest extends TestCase
 
     public function test_new_entry()
     {
-        //$response = $this->postJson('/api/post/store', ['name' => 'Sally', 'entry' => 'Testentry']);
+        $response = $this->postJson('/api/post/store', ['name' => 'Sally', 'entry' => 'Testentry']);
 
-        //$response->assertStatus(200);
+        $response->assertStatus(200);
     }
 
 }

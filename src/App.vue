@@ -66,7 +66,7 @@
                                 </vRow>
                                 <vRow>
                                     <vCol class="text-left text-body-1">
-                                        <div v-html="item.entry"></div>
+                                        <div class="mx-2" v-html="item.entry"></div>
                                     </vCol>
                                 </vRow>
                             </vContainer>
@@ -111,7 +111,13 @@ export default {
                     name: this.name,
                     entry: this.entry,
                 })
-                .then(() => {
+                .then((response) => {
+                    if (response.error) {
+                        alert('Error')
+                    } else {
+                        this.name = ''
+                        this.entry = ''
+                    }
                     this.refreshEntries()
                 })
         },
@@ -120,9 +126,6 @@ export default {
                 this.posts = response.data.reverse()
             })
         },
-    },
-    computed: {
-
     },
     components: { QuillEditor, LocaleChangerVue },
 }

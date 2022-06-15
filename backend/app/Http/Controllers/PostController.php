@@ -40,11 +40,20 @@ class PostController extends Controller
         $name   = $sanitizer->sanitize($request->name);
         $entry  = $sanitizer->sanitize($request->entry);
 
+        if ($name === '' || $entry === '') {
+            return response()->json([
+                "error" => true
+            ]);
+        }
+
         $post = new Post;
         $post->name = $name;
         $post->entry = $entry;
 
         $post->save();
+        return response()->json([
+            "error" => false
+        ]);
     }
 
     /**
