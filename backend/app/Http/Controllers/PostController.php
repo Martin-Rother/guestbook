@@ -42,7 +42,8 @@ class PostController extends Controller
 
         if ($name === '' || $entry === '') {
             return response()->json([
-                "error" => true
+                "error" => true,
+                "msg" => 'Invalid name or entry'
             ]);
         }
 
@@ -52,7 +53,8 @@ class PostController extends Controller
 
         $post->save();
         return response()->json([
-            "error" => false
+            "error" => false,
+            "created" => true
         ]);
     }
 
