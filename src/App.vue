@@ -14,9 +14,10 @@
             </template>
         </vAppBar>
         <vMain>
-            <vContainer class="text-center ma-2">
+            <vContainer fluid class="text-center ma-2">
                 <vRow>
-                    <vCol offset-lg="2" lg="8">
+                    <vCol cols="2"></vCol>
+                    <vCol cols="8">
                         <vForm class="mx-2">
                             <vTextField
                                 v-model="name"
@@ -72,6 +73,7 @@
                             </vContainer>
                         </div>
                     </vCol>
+                    <vCol cols="2"></vCol>
                 </vRow>
             </vContainer>
         </vMain>
