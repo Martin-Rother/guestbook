@@ -44,10 +44,17 @@
                             </vBtn>
                         </div>
 
+                        <vPagination
+                            v-model="page"
+                            :length="Math.ceil(posts.length / 5)"
+                        ></vPagination>
                         <div v-if="posts.length !== 0" class="mr-4 mt-2">
                             <vContainer
                                 fluid
-                                v-for="item in posts"
+                                v-for="item in posts.slice(
+                                    (page - 1) * 5,
+                                    page * 5
+                                )"
                                 class="elevation-1 ma-2"
                             >
                                 <vRow>
@@ -67,7 +74,10 @@
                                 </vRow>
                                 <vRow>
                                     <vCol class="text-left text-body-1">
-                                        <div class="mx-2" v-html="item.entry"></div>
+                                        <div
+                                            class="mx-2"
+                                            v-html="item.entry"
+                                        ></div>
                                     </vCol>
                                 </vRow>
                             </vContainer>
@@ -102,6 +112,7 @@ export default {
         entry: '',
         name: '',
         posts: [],
+        page: 1,
     }),
     mounted() {
         this.refreshEntries()
