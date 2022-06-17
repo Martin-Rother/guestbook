@@ -34,15 +34,26 @@
                                 theme="snow"
                             />
                         </div>
-
-                        <div class="text-right ma-2">
-                            <vBtn
-                                @click="send()"
-                                :disabled="entry === '' || name === ''"
-                            >
-                                {{ $t('message.send') }}
-                            </vBtn>
-                        </div>
+                        <vRow>
+                            <vCol>
+                                <div
+                                    class="ma-2 caption text-left font-weight-thin"
+                                >
+                                    {{ entry.length }} /
+                                    {{ entryMaxLength }} Bytes
+                                </div>
+                            </vCol>
+                            <vCol>
+                                <div class="text-right ma-2">
+                                    <vBtn
+                                        @click="send()"
+                                        :disabled="entry === '' || name === ''"
+                                    >
+                                        {{ $t('message.send') }}
+                                    </vBtn>
+                                </div>
+                            </vCol>
+                        </vRow>
 
                         <vPagination
                             v-model="page"
@@ -110,7 +121,9 @@ export default {
     },
     data: () => ({
         entry: '',
+        entryMaxLength: 4000,
         name: '',
+        nameMaxLength: 255,
         posts: [],
         page: 1,
     }),
@@ -125,8 +138,8 @@ export default {
                     entry: this.entry,
                 })
                 .then((response) => {
-                    if (response.error) {
-                        alert('Error')
+                    if (response.data.error) {
+                        alert(response.data.msg)
                     } else {
                         this.name = ''
                         this.entry = ''
@@ -141,5 +154,17 @@ export default {
         },
     },
     components: { QuillEditor, LocaleChangerVue },
+    watch: {
+        entry: function (newValue, oldValue) {
+            if (newValue.length > this.entryMaxLength) {
+                this.entry = oldValue
+            }
+        },
+        name: function (newValue, oldValue) {
+            if (newValue.length > this.nameMaxLength) {
+                this.name = oldValue
+            }
+        },
+    },
 }
 </script>
