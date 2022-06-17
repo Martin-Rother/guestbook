@@ -16,7 +16,7 @@
         <vMain>
             <vContainer class="text-center ma-2">
                 <vRow>
-                    <vCol offset-lg="4" lg="8">
+                    <vCol offset-lg="2" lg="8">
                         <vForm class="mx-2">
                             <vTextField
                                 v-model="name"
