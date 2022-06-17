@@ -59,7 +59,7 @@
 
 ## About The Project
 
-This is just an example project for demonstration purposes.
+This is an example project for demonstration purposes.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -75,7 +75,7 @@ This is just an example project for demonstration purposes.
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
