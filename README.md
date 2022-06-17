@@ -103,6 +103,11 @@ You need to install Composer (>= v2.3), NodeJS (>= v16.15) with npm (>= v8.12) a
      DB_USERNAME=username
      DB_PASSWORD=password
     ```
+5. Create a Database and a MySQL user with your credentials
+6. Migrate the Database
+    ```sh
+    cd backend && php artisan migrate
+    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
