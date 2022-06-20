@@ -27,6 +27,7 @@
                         <div class="mx-2">
                             <QuillEditor
                                 v-model:content="entry"
+                                ref="editor"
                                 :placeholder="$t('message.placeholder')"
                                 :key="$t('message.placeholder')"
                                 contentType="html"
@@ -143,6 +144,7 @@ export default {
                     } else {
                         this.name = ''
                         this.entry = ''
+                        this.$refs.editor.setText('')
                     }
                     this.refreshEntries()
                 })
