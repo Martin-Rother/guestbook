@@ -13,7 +13,7 @@
 
 describe('Guestbook', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000')
+        cy.visit(Cypress.env('frontend'))
     })
 
     it('displays navbar', () => {

@@ -113,6 +113,9 @@ You need to install Composer (>= v2.3), NodeJS (>= v16.15) with npm (>= v8.12) a
 
 ## Running the Application
 
+Create a `.env` from `.env.example ` and alter it so that it fits your configuration.
+Then run:
+
 ### Run frontend
 
 ```sh
@@ -131,8 +134,11 @@ You need to install Composer (>= v2.3), NodeJS (>= v16.15) with npm (>= v8.12) a
 
 ### Test frontend
 
+Create a `cypress.env.json` from `cypress.env.json.example` and alter it so that it fits your configuration.
+Then run:
+
 ```sh
-    npx cypress run
+    npm run test
 ```
 
 ### Test backend

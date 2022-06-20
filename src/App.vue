@@ -133,7 +133,7 @@ export default {
     methods: {
         send() {
             axios
-                .post('http://localhost:8000/api/post/store', {
+                .post(import.meta.env.VITE_BACKEND + '/api/post/store', {
                     name: this.name,
                     entry: this.entry,
                 })
@@ -148,9 +148,11 @@ export default {
                 })
         },
         refreshEntries() {
-            axios.get('http://localhost:8000/api/posts').then((response) => {
-                this.posts = response.data.reverse()
-            })
+            axios
+                .get(import.meta.env.VITE_BACKEND + '/api/posts')
+                .then((response) => {
+                    this.posts = response.data.reverse()
+                })
         },
     },
     components: { QuillEditor, LocaleChangerVue },

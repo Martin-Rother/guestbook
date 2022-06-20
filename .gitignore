@@ -25,3 +25,6 @@ dist-ssr
 
 # Cypress
 cypress/videos/*
+cypress.env.json
+
+.env
